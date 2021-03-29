@@ -16,6 +16,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.scale
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -43,23 +44,27 @@ fun TodaySummary(){
         horizontalArrangement = Arrangement.Center,
     ){
         Card(shape = RoundedCornerShape(8.dp),
-            backgroundColor = MaterialTheme.colors.surface,) {
+            backgroundColor = Color(0xff87ceeb),) {
             Row{
                 Column(modifier = Modifier.padding(horizontal = 24.dp, vertical = 16.dp)){
                     Icon(imageVector = Icons.Default.Cloud, contentDescription = null, modifier = Modifier
                         .align(Alignment.CenterHorizontally)
                         .height(42.dp)
-                        .width(42.dp))
+                        .width(42.dp),
+                        tint = Color.White,)
                     Text(text = "Cloudy",
-                        style = MaterialTheme.typography.h6)
+                        style = MaterialTheme.typography.h6,
+                        color = Color.White,)
                 }
                 Column(modifier = Modifier.padding(horizontal = 24.dp, vertical = 16.dp)){
                     Text(text = "21°",
                         style = MaterialTheme.typography.h4,
-                        fontWeight = FontWeight.Black)
+                        fontWeight = FontWeight.Black,
+                        color = Color.White,)
                     Text(text = "Feels like 21°",
                         style = MaterialTheme.typography.body2,
-                        fontWeight = FontWeight.Light)
+                        fontWeight = FontWeight.Light,
+                        color = Color.White,)
                 }
             }
         }
@@ -79,13 +84,17 @@ fun TodayDetails(){
         val valueArray =
             arrayListOf("21°", "21°", "0m/h", "0%")
 
-
-        LazyVerticalGrid(
-            cells = GridCells.Fixed(2),
-        ) {
-            items(featureArray.size) {
-                Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                    WeatherItem(imageVector = featureArray[it], value = valueArray[it])
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(vertical = 8.dp),
+            horizontalArrangement = Arrangement.Center,
+        ){
+            Card{
+                Row{
+                    featureArray.forEachIndexed { index, feature ->
+                       WeatherItem(imageVector = feature, value = valueArray[index])
+                   }
                 }
             }
         }
@@ -95,7 +104,7 @@ fun TodayDetails(){
 @Composable
 fun WeatherItem(imageVector: ImageVector, value: String){
     Column(
-        modifier = Modifier.padding(top = 16.dp)
+        modifier = Modifier.padding(16.dp)
     ) {
         Icon(
             imageVector = imageVector,
