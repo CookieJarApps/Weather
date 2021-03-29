@@ -13,6 +13,8 @@ import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.scale
@@ -32,8 +34,8 @@ import com.cookiejarapps.weather.R
 fun App() {
     Scaffold(
         scaffoldState = rememberScaffoldState(),
-        topBar = { TopAppBar(title = {Text("Toolbar")},backgroundColor = Color.White)  },
-        bottomBar = { BottomAppBar(backgroundColor = Color.White) { Text("BottomBar") } },
+        topBar = { TopBar() },
+        bottomBar = { BottomBar() },
         content = {
             Column {
                 TodaySummary()
@@ -44,6 +46,50 @@ fun App() {
         }
     )
 }
+
+@Composable
+fun BottomBar() {
+    BottomAppBar(backgroundColor = Color.White) {
+        BottomNavigationItem(
+            onClick = { /*TODO*/ },
+            icon = { Icon(Icons.Default.Home, null) },
+            selected = true
+        )
+        BottomNavigationItem(
+            onClick = { /*TODO*/ },
+            icon = { Icon(Icons.Default.CalendarViewWeek, null) },
+            selected = false
+        )
+        BottomNavigationItem(
+            onClick = { /*TODO*/ },
+            icon = { Icon(Icons.Default.Radar, null) },
+            selected = false
+        )
+        BottomNavigationItem(
+            onClick = { /*TODO*/ },
+            icon = { Icon(Icons.Default.Person, null) },
+            selected = false
+        )
+
+    }
+}
+
+@Composable
+fun TopBar(){
+    TopAppBar(
+        title = {Text("Weather - Geneva")},
+        backgroundColor = Color.White,
+    actions = {
+        IconButton(onClick = { /*TODO*/ }) {
+            Icon(Icons.Default.LocationCity, null)
+        }
+        IconButton(onClick = { /*TODO*/ }) {
+            Icon(Icons.Default.Settings, null)
+        }
+    }
+  )
+}
+
 @Composable
 fun TodaySummary(){
     Row(
