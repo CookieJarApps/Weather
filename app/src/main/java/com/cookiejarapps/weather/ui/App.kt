@@ -30,14 +30,20 @@ import com.cookiejarapps.weather.R
 @Preview
 @Composable
 fun App() {
-    Column {
-        TodaySummary()
-        TodayDetails()
-        Spacer(Modifier.height(16.dp))
-        HourlyBreakdown()
-    }
+    Scaffold(
+        scaffoldState = rememberScaffoldState(),
+        topBar = { TopAppBar(title = {Text("Toolbar")},backgroundColor = Color.White)  },
+        bottomBar = { BottomAppBar(backgroundColor = Color.White) { Text("BottomBar") } },
+        content = {
+            Column {
+                TodaySummary()
+                TodayDetails()
+                Spacer(Modifier.height(16.dp))
+                HourlyBreakdown()
+            }
+        }
+    )
 }
-
 @Composable
 fun TodaySummary(){
     Row(
