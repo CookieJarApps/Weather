@@ -1,6 +1,8 @@
 package com.cookiejarapps.weather.ui
 
+import android.content.res.ColorStateList
 import androidx.compose.animation.animateContentSize
+import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.GridCells
@@ -17,6 +19,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -32,6 +35,8 @@ fun App() {
     Column {
         TodaySummary()
         TodayDetails()
+        Spacer(Modifier.height(16.dp))
+        HourlyBreakdown()
     }
 }
 
@@ -117,4 +122,16 @@ fun WeatherItem(imageVector: ImageVector, value: String){
             style = MaterialTheme.typography.body1,
         )
     }
+}
+
+@Composable
+fun HourlyBreakdown(){
+    Text(
+        text = "Today",
+        style = MaterialTheme.typography.h6,
+        fontWeight = FontWeight.Bold,
+        textAlign = TextAlign.Center,
+        modifier = Modifier.fillMaxWidth()
+    )
+    LineChartScreen()
 }

@@ -71,6 +71,8 @@ dependencies {
     implementation 'androidx.compose.runtime:runtime-livedata:1.0.0-beta03'
     implementation 'androidx.compose.runtime:runtime-rxjava2:1.0.0-beta03'
     implementation "androidx.compose.material:material-icons-extended:1.0.0-beta03"
+    // ConstraintLayout
+    implementation "androidx.constraintlayout:constraintlayout-compose:1.0.0-alpha05"
 
     // UI Tests
     androidTestImplementation 'androidx.compose.ui:ui-test-junit4:1.0.0-beta03'
