@@ -2,16 +2,14 @@ package com.cookiejarapps.weather.ui
 
 import android.content.res.ColorStateList
 import androidx.compose.animation.animateContentSize
-import androidx.compose.foundation.Canvas
-import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.*
+import androidx.compose.foundation.gestures.ScrollableState
+import androidx.compose.foundation.gestures.scrollable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.GridCells
 import androidx.compose.foundation.lazy.LazyVerticalGrid
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Card
-import androidx.compose.material.Icon
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
+import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
 import androidx.compose.runtime.Composable
@@ -133,5 +131,19 @@ fun HourlyBreakdown(){
         textAlign = TextAlign.Center,
         modifier = Modifier.fillMaxWidth()
     )
-    LineChartScreen()
+    Row(modifier = Modifier
+        .horizontalScroll(rememberScrollState())
+        .fillMaxWidth()){
+        for(i in listOf("Temperature", "Wind", "Precipitation", "UV Index")){
+            Button(onClick = { /*TODO*/ }, modifier = Modifier.padding(16.dp)) {
+                Text(i)
+            }
+        }
+    }
+
+    Row(modifier = Modifier
+        .horizontalScroll(rememberScrollState())
+        .width(512.dp)){
+        LineChartScreen()
+    }
 }
